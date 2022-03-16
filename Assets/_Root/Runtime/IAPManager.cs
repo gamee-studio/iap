@@ -54,7 +54,6 @@ namespace Snorlax.Iap
             builder.Configure<IGooglePlayConfiguration>();
 
             UnityPurchasing.Initialize(this, builder);
-            //listener.Initialized(this);
             IsInitialized = true;
         }
 
@@ -84,6 +83,13 @@ namespace Snorlax.Iap
 
             PurchaseVerified(purchaseEvent);
             return PurchaseProcessingResult.Complete;
+        }
+
+        public void PurchaseProduct(string productId)
+        {
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+            _controller?.InitiatePurchase(productId);
+#endif
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) { OnPurchaseFailedEvent?.Invoke(failureReason.ToString()); }

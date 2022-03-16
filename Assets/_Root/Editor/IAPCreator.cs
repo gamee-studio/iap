@@ -1,4 +1,6 @@
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using Snorlax.Iap;
 using UnityEditor;
 using UnityEngine;
@@ -7,6 +9,8 @@ namespace Snorlax.IapEditor
 {
     public class IAPCreator
     {
+        private const string PRODUCT_IMPL_PATH = "Assets/_Root/Scripts/ProductImpl.cs";
+
         internal static IAPSetting CreateSettingsAsset()
         {
             // Stop if the asset is already created.
@@ -50,5 +54,32 @@ namespace Snorlax.IapEditor
         /// <returns>The path.</returns>
         /// <param name="path">Path with correct separators.</param>
         public static string SlashesToPlatformSeparator(string path) { return path.Replace("/", Path.DirectorySeparatorChar.ToString()); }
+
+        public static void GenerateImplProduct()
+        {
+            EnsureFolderExists("Assets/_Root/Scripts");
+
+            var str = "namespace Snorlax.Iap\n{";
+            str += "\n\tpublic static class ProductImpl\n\t{";
+
+            var skus = IAPSetting.SkusData;
+            for (int i = 0; i < skus.Count; i++)
+            {
+                var itemName = skus[i].sku.Id.Split('.').Last();
+                str += $"\n\t\tpublic static void Purchase{CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName)}()";
+                str += "\n\t\t{";
+                str += $"\n\t\t\tIAPManager.Instance.PurchaseProduct(\"{skus[i].sku.Id}\");";
+                str += "\n\t\t}";
+                str += "\n";
+            }
+
+            str += "\n\t}";
+            str += "\n}";
+
+            var writer = new StreamWriter(PRODUCT_IMPL_PATH, false);
+            writer.Write(str);
+            writer.Close();
+            AssetDatabase.ImportAsset(PRODUCT_IMPL_PATH);
+        }
     }
 }

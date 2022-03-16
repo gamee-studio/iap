@@ -50,16 +50,24 @@ namespace Snorlax.IapEditor
             }
 
             EditorGUI.BeginDisabledGroup(EditorApplication.isCompiling);
-            
+
             EditorGUILayout.HelpBox("Product id should look like : com.appname.itemid\ncom.eldenring.doublesoul", MessageType.Info);
 
-            DrawUppercaseSection("IAP_SETTING", "SETTING",
+            DrawUppercaseSection("IAP_SETTING",
+                "SETTING",
                 () =>
                 {
                     EditorGUILayout.PropertyField(_skusData.property, _skusData.content);
                     foreach (var iapData in IAPSetting.SkusData)
                     {
                         iapData.name = iapData.sku.Id;
+                    }
+
+                    EditorGUILayout.Space();
+
+                    if (GUILayout.Button("Generate Script", GUILayout.Height(EditorGUIUtility.singleLineHeight * 1.3f)))
+                    {
+                        IAPCreator.GenerateImplProduct();
                     }
                 });
 
