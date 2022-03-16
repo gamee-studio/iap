@@ -50,6 +50,8 @@ namespace Snorlax.IapEditor
             }
 
             EditorGUI.BeginDisabledGroup(EditorApplication.isCompiling);
+            
+            EditorGUILayout.HelpBox("Product id should look like : com.appname.itemid\ncom.eldenring.doublesoul", MessageType.Info);
 
             DrawUppercaseSection("IAP_SETTING", "SETTING",
                 () =>

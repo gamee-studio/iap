@@ -154,7 +154,7 @@ namespace Snorlax.Iap
         {
             foreach (var item in Skus)
             {
-                if (item.sku.Equals(sku)) return item.productType;
+                if (item.sku.Id.Equals(sku)) return item.productType;
             }
 
             return ProductType.Consumable;
