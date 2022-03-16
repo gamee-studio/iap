@@ -1,0 +1,28 @@
+{
+  "name": "com.gamee.iap",
+  "displayName": "IAP",
+  "description": "In app purchase for unity3d",
+  "version": "1.0.0",
+  "unity": "2019.1",
+  "category": "gamee",
+  "author": {
+    "name": "yenmoc",
+    "email": "phongsoyenmoc.diep@gmail.com",
+    "url": "https://github.com/yenmoc"
+  },
+  "license": "MIT",
+  "keywords": [
+    "iap"
+  ],
+  "dependencies": {
+    "com.unity.purchasing": "4.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gamee-studio/ads.git",
+    "directory": "com.gamee.iap"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@gamee-studio"
+  }
+}
