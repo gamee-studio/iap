@@ -61,5 +61,20 @@ error
 IAPManager.Instance.OnPurchaseSucceedEvent += YourHandlePurchaseSucceedEvent;
 IAPManager.Instance.OnPurchaseFailedEvent += YourHandlePurchaseFailedEvent;
 
+private void YourHandlePurchaseSucceedEvent(PurchaseEventArgs product)
+{
+    switch (product.purchasedProduct.definition.id)
+    {
+        case "com.larnten.removeads":
+            break;
+        // TO_DO
+    }
+}
+
+private void YourHandlePurchaseFailedEvent(string obj)
+{
+    // TO_DO        
+}
+
 ```
 
