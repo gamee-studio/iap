@@ -16,7 +16,7 @@ Add the following lines
 - for excactly version
 
 ```csharp
-"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.1",
+"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.2",
 "com.snorlax.simplejson": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
 ```
 
