@@ -89,11 +89,21 @@ namespace Snorlax.IapEditor
         private const int CHEVRON_ICON_WIDTH = 10;
         private const int CHEVRON_ICON_RIGHT_MARGIN = 5;
 
-        public static GUIStyle UppercaseSectionHeaderExpand { get { return uppercaseSectionHeaderExpand ??= GetCustomStyle("Uppercase Section Header"); } }
+        public static GUIStyle UppercaseSectionHeaderExpand { get
+        {
+            if (uppercaseSectionHeaderExpand == null) uppercaseSectionHeaderExpand = GetCustomStyle("Uppercase Section Header");
+            
+            return uppercaseSectionHeaderExpand;
+        } }
 
         public static GUIStyle UppercaseSectionHeaderCollapse
         {
-            get { return uppercaseSectionHeaderCollapse ??= new GUIStyle(GetCustomStyle("Uppercase Section Header")) { normal = new GUIStyleState() }; }
+            get
+            {
+                if (uppercaseSectionHeaderCollapse == null) uppercaseSectionHeaderCollapse = new GUIStyle(GetCustomStyle("Uppercase Section Header")) { normal = new GUIStyleState() };
+
+                return uppercaseSectionHeaderCollapse;
+            }
         }
 
         public static GUIStyle GetCustomStyle(string styleName)
