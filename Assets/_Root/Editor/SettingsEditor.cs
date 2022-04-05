@@ -144,8 +144,8 @@ namespace Snorlax.IapEditor
             get
             {
                 if (chevronDown != null) return chevronDown;
-                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-down-dark1.psd";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-down-dark1.psd" : upmPath;
+                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-down-dark.psd";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-down-dark.psd" : upmPath;
                 chevronDown = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
                 return chevronDown;
             }
@@ -156,8 +156,8 @@ namespace Snorlax.IapEditor
             get
             {
                 if (chevronUp != null) return chevronUp;
-                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-up-dark1.psd";
-                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-up-dark1.psd" : upmPath;
+                const string upmPath = UPM_SKIN_PATH + "Icons/icon-chevron-up-dark.psd";
+                string path = !File.Exists(Path.GetFullPath(upmPath)) ? SKIN_PATH + "Icons/icon-chevron-up-dark.psd" : upmPath;
                 chevronUp = AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D)) as Texture2D;
 
                 return chevronUp;
