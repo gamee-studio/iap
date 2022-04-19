@@ -1,6 +1,6 @@
 using System;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     [Serializable]
     public class InformationPurchaseResult

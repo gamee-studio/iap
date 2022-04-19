@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     [Serializable]
     public class IAPData

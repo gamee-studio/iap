@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     public static class IAPInitManager
     {

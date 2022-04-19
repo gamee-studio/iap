@@ -1,11 +1,11 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Snorlax.Iap;
+using Pancake.Iap;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.IapEditor
+namespace Pancake.Editor
 {
     public class IAPCreator
     {
@@ -59,7 +59,7 @@ namespace Snorlax.IapEditor
         {
             EnsureFolderExists("Assets/_Root/Scripts");
 
-            var str = "namespace Snorlax.Iap\n{";
+            var str = "namespace Pancake.Iap\n{";
             str += "\n\tpublic static class ProductImpl\n\t{";
 
             var skus = IAPSetting.SkusData;

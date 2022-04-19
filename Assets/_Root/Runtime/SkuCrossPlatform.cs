@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     [Serializable]
     public class SkuCrossPlatform

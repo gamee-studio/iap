@@ -1,8 +1,8 @@
-using Snorlax.Iap;
+using Pancake.Iap;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.IapEditor
+namespace Pancake.Editor
 {
     [CustomPropertyDrawer(typeof(SkuCrossPlatform))]
     public class SkuIdEditor : PropertyDrawer

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     public class IAPSetting : ScriptableObject
     {

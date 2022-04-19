@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.pancake.common": {
+      "version": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ea6794660f43f11690018fa4f38a4526430a356e"
+    },
     "com.snorlax.simplejson": {
       "version": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
       "depth": 0,

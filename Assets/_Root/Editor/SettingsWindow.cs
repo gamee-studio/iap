@@ -1,17 +1,18 @@
-using Snorlax.Iap;
+using System;
+using Pancake.Iap;
 using UnityEditor;
 using UnityEngine;
 
-namespace Snorlax.IapEditor
+namespace Pancake.Editor
 {
     public class SettingsWindow : EditorWindow
     {
         private Vector2 _scrollPosition;
-        private Editor _editor;
+        private UnityEditor.Editor _editor;
 
         private void OnGUI()
         {
-            if (_editor == null) _editor = Editor.CreateEditor(IAPSetting.Instance);
+            if (_editor == null) _editor = UnityEditor.Editor.CreateEditor(IAPSetting.Instance);
 
             if (_editor == null)
             {
@@ -31,7 +32,7 @@ namespace Snorlax.IapEditor
         private static SettingsWindow GetWindow()
         {
             // Get the window and make sure it will be opened in the same panel with inspector window.
-            var editorAsm = typeof(Editor).Assembly;
+            var editorAsm = typeof(UnityEditor.Editor).Assembly;
             var inspWndType = editorAsm.GetType("UnityEditor.InspectorWindow");
             var window = GetWindow<SettingsWindow>(inspWndType);
             window.titleContent = new GUIContent("IAP");
@@ -52,8 +53,14 @@ namespace Snorlax.IapEditor
             window.Show();
         }
 
+        private void OnEnable()
+        {
+            Uniform.FoldoutSettings.LoadSetting();
+        }
+
         private void OnDisable()
         {
+            Uniform.FoldoutSettings.SaveSetting();
             EditorUtility.ClearProgressBar();
             AssetDatabase.SaveAssets();
         }

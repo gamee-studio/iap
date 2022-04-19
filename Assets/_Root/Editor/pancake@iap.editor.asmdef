@@ -1,8 +1,9 @@
 {
-    "name": "snorlax@iapeditor",
+    "name": "pancake@iap.editor",
     "rootNamespace": "Snorlax.IapEditor",
     "references": [
-        "GUID:a5305916537bb944199cdcaef0019544"
+        "GUID:a5305916537bb944199cdcaef0019544",
+        "GUID:686c6ddb7c263be4eb5ab9101c65cb91"
     ],
     "includePlatforms": [
         "Editor"

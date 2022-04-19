@@ -4,7 +4,7 @@ using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     public class IAPManager : MonoBehaviour, IStoreListener
     {

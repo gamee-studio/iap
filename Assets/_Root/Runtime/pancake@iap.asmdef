@@ -1,6 +1,6 @@
 {
-    "name": "snorlax@iap",
-    "rootNamespace": "Snorlax.Iap",
+    "name": "pancake@iap",
+    "rootNamespace": "Pancake.Iap",
     "references": [
         "GUID:60bfecf5cb232594891bc622f40d6bed",
         "GUID:1c356002f70e0684e81f29a038c9392c",

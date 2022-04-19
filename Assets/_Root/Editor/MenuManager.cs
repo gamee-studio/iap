@@ -1,7 +1,7 @@
-using Snorlax.Iap;
+using Pancake.Iap;
 using UnityEditor;
 
-namespace Snorlax.IapEditor
+namespace Pancake.Editor
 {
     public static class MenuManager
     {

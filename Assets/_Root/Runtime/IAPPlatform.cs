@@ -1,4 +1,4 @@
-namespace Snorlax.Iap
+namespace Pancake.Iap
 {
     public enum EIAPPlatform
     {
