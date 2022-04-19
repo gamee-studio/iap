@@ -11,13 +11,15 @@ Add the following lines
 ```csharp
 "com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root",
 "com.snorlax.simplejson": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
 ```
 
 - for excactly version
 
 ```csharp
-"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.2",
+"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.4",
 "com.snorlax.simplejson": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
 ```
 
 To `Packages/manifest.json`
