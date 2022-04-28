@@ -5,7 +5,7 @@ namespace Pancake.Editor
 {
     public static class MenuManager
     {
-        [MenuItem("Tools/Snorlax/IAP %w", false, 1)]
+        [MenuItem("Tools/Pancake/IAP %w", false, 1)]
         public static void MenuOpenSettings()
         {
             // Load settings object or create a new one if it doesn't exist.
