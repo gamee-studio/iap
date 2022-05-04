@@ -96,8 +96,14 @@ namespace Pancake.Iap
 
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
+            // Purchasing has succeeded initializing. Collect our Purchasing references.
+            // Overall Purchasing system, configured with products for this application.
             _controller = controller;
             _extensions = extensions;
+            foreach (var product in _controller.products.all)
+            {
+                _controller.ConfirmPendingPurchase(product);
+            }
         }
 
         private InformationPurchaseResult GetIapInformationPurchase(string json)
