@@ -9,7 +9,7 @@ namespace Pancake.Editor
 {
     public class IAPCreator
     {
-        private const string PRODUCT_IMPL_PATH = "Assets/_Root/Scripts/ProductImpl.cs";
+        private const string PRODUCT_IMPL_PATH = "Assets/_Root/Scripts/Product.cs";
 
         internal static IAPSetting CreateSettingsAsset()
         {
@@ -60,15 +60,15 @@ namespace Pancake.Editor
             EnsureFolderExists("Assets/_Root/Scripts");
 
             var str = "namespace Pancake.Iap\n{";
-            str += "\n\tpublic static class ProductImpl\n\t{";
+            str += "\n\tpublic static class Product\n\t{";
 
             var skus = IAPSetting.SkusData;
             for (int i = 0; i < skus.Count; i++)
             {
                 var itemName = skus[i].sku.Id.Split('.').Last();
-                str += $"\n\t\tpublic static void Purchase{CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName)}()";
+                str += $"\n\t\tpublic static IAPData Purchase{CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName)}()";
                 str += "\n\t\t{";
-                str += $"\n\t\t\tIAPManager.Instance.PurchaseProduct(\"{skus[i].sku.Id}\");";
+                str += $"\n\t\t\treturn IAPManager.Purchase(IAPSetting.SkusData[{i}]);";
                 str += "\n\t\t}";
                 str += "\n";
             }

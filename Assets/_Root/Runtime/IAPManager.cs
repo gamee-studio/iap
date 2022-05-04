@@ -8,8 +8,10 @@ namespace Pancake.Iap
 {
     public class IAPManager : MonoBehaviour, IStoreListener
     {
-        public event Action<PurchaseEventArgs> OnPurchaseSucceedEvent;
-        public event Action<string> OnPurchaseFailedEvent;
+        public static event Action<string> OnPurchaseSucceedEvent;
+        public static event Action<string> OnPurchaseFailedEvent;
+        private static readonly Dictionary<string, Action> CompletedDict = new();
+        private static readonly Dictionary<string, Action> FaildDict = new();
 
         private static IAPManager instance;
         private IStoreController _controller;
@@ -35,20 +37,26 @@ namespace Pancake.Iap
 
             if (Application.isPlaying)
             {
-                var obj = new GameObject("IAPManager") { hideFlags = HideFlags.HideAndDontSave };
+                var obj = new GameObject("IAPManager") {hideFlags = HideFlags.HideAndDontSave};
                 instance = obj.AddComponent<IAPManager>();
-                instance.Init(IAPSetting.SkusData);
+                instance.InitImpl(IAPSetting.SkusData);
                 DontDestroyOnLoad(obj);
             }
         }
 
-        public void Init(IEnumerable<IAPData> skuItems)
+        private void InitImpl(List<IAPData> skuItems)
         {
             if (this != Instance) return;
 
             if (IsInitialized) return;
             Skus.Clear();
             Skus.AddRange(skuItems);
+            CompletedDict.Clear();
+            foreach (var item in skuItems)
+            {
+                CompletedDict.Add(item.sku.Id, null);
+            }
+
             var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
             RequestProductData(builder);
             builder.Configure<IGooglePlayConfiguration>();
@@ -56,6 +64,8 @@ namespace Pancake.Iap
             UnityPurchasing.Initialize(this, builder);
             IsInitialized = true;
         }
+
+        public static void ForceInit(List<IAPData> skuItems) { Instance.InitImpl(skuItems); }
 
         public void OnInitializeFailed(InitializationFailureReason error)
         {
@@ -85,14 +95,40 @@ namespace Pancake.Iap
             return PurchaseProcessingResult.Complete;
         }
 
-        public void PurchaseProduct(string productId)
+        private IAPData PurchaseProduct(IAPData product)
         {
 #if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
-            _controller?.InitiatePurchase(productId);
+            _controller?.InitiatePurchase(product.sku.Id);
 #endif
+            return product;
         }
 
-        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) { OnPurchaseFailedEvent?.Invoke(failureReason.ToString()); }
+        public static IAPData Purchase(IAPData product) { return Instance.PurchaseProduct(product); }
+
+        public static void RegisterCompletedEvent(string key, Action action)
+        {
+            foreach (var e in CompletedDict)
+            {
+                if (e.Key.Equals(key)) CompletedDict[key] = action;
+            }
+        }
+
+        public static void RegisterFaildEvent(string key, Action action)
+        {
+            foreach (var e in FaildDict)
+            {
+                if (e.Key.Equals(key)) FaildDict[key] = action;
+            }
+        }
+
+        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+        {
+            OnPurchaseFailedEvent?.Invoke(failureReason.ToString());
+            foreach (var e in FaildDict)
+            {
+                if (e.Key.Equals(product.definition.id)) e.Value?.Invoke();
+            }
+        }
 
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
@@ -104,6 +140,12 @@ namespace Pancake.Iap
             {
                 _controller.ConfirmPendingPurchase(product);
             }
+        }
+
+        public bool IsPurchased(string sku)
+        {
+            var type = GetIapType(sku);
+            return type == ProductType.NonConsumable && _controller.products.WithID(sku).hasReceipt;
         }
 
         private InformationPurchaseResult GetIapInformationPurchase(string json)
@@ -152,7 +194,14 @@ namespace Pancake.Iap
 #endif
         }
 
-        private void PurchaseVerified(PurchaseEventArgs e) { OnPurchaseSucceedEvent?.Invoke(e); }
+        private void PurchaseVerified(PurchaseEventArgs e)
+        {
+            OnPurchaseSucceedEvent?.Invoke(e.purchasedProduct.definition.id);
+            foreach (var completeEvent in CompletedDict)
+            {
+                if (completeEvent.Key.Equals(e.purchasedProduct.definition.id)) completeEvent.Value?.Invoke();
+            }
+        }
 
         private void RequestProductData(ConfigurationBuilder builder)
         {
@@ -171,9 +220,5 @@ namespace Pancake.Iap
 
             return ProductType.Consumable;
         }
-
-        private void HandlePurchaseFaild(string str) { OnPurchaseFailedEvent?.Invoke(str); }
-
-        private void HandlePurchaseSucceed(PurchaseEventArgs e) { OnPurchaseSucceedEvent?.Invoke(e); }
     }
 }
