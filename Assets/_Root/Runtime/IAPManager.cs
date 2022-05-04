@@ -136,10 +136,12 @@ namespace Pancake.Iap
             // Overall Purchasing system, configured with products for this application.
             _controller = controller;
             _extensions = extensions;
+#if UNITY_ANDROID || UNITY_IOS
             foreach (var product in _controller.products.all)
             {
-                _controller.ConfirmPendingPurchase(product);
+                if (product != null && string.IsNullOrEmpty(product.transactionID)) _controller.ConfirmPendingPurchase(product);
             }
+#endif
         }
 
         public bool IsPurchased(string sku)
