@@ -146,6 +146,7 @@ namespace Pancake.Iap
 
         public bool IsPurchased(string sku)
         {
+            if (_controller == null || _controller.products.all.Length == 0) return false;
             var type = GetIapType(sku);
             return type == ProductType.NonConsumable && _controller.products.WithID(sku).hasReceipt;
         }
