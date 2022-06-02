@@ -1,18 +1,20 @@
 {
   "dependencies": {
     "com.pancake.common": {
-      "version": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
+      "version": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.5",
       "depth": 0,
       "source": "git",
-      "dependencies": {},
-      "hash": "ea6794660f43f11690018fa4f38a4526430a356e"
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "09f0e9717aa5042a18bc1935ded86d811a1c9176"
     },
-    "com.snorlax.simplejson": {
-      "version": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
+    "com.pancake.simplejson": {
+      "version": "https://github.com/pancake-llc/SimpleJSON.git?path=Assets/_Root#1.0.2",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8f92fc8bc6ef9e91a83b72452516678de03282a8"
+      "hash": "cb8168a6e41f6531649d5befb3f895381365e1a3"
     },
     "com.unity.2d.animation": {
       "version": "7.0.4",
@@ -139,6 +141,13 @@
     },
     "com.unity.mathematics": {
       "version": "1.2.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

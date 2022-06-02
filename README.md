@@ -4,25 +4,16 @@ Integration module for implementing in app purchase for Unity 3d
 
 ## How To Install
 
-Add the following lines
+Add the lines below to `Packages/manifest.json`
 
-- for newest update
-
-```csharp
-"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root",
-"com.snorlax.simplejson": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
-```
-
-- for excactly version
+- for version 1.0.7
 
 ```csharp
-"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.6",
-"com.snorlax.simplejson": "https://github.com/snorluxe/SimpleJSON.git?path=Assets/_Root",
-"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.1.5",
+"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.7",
+"com.pancake.simplejson": "https://github.com/pancake-llc/SimpleJSON.git?path=Assets/_Root#1.0.2",
+"com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.5",
 ```
 
-To `Packages/manifest.json`
 
 ## Usage
 
