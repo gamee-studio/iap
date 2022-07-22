@@ -6,6 +6,7 @@ using UnityEngine.Purchasing;
 
 namespace Pancake.Iap
 {
+    [AddComponentMenu("")]
     public class IAPManager : MonoBehaviour, IStoreListener
     {
         public static event Action<string> OnPurchaseSucceedEvent;
@@ -28,7 +29,7 @@ namespace Pancake.Iap
         }
 
         public List<IAPData> Skus { get; set; } = new List<IAPData>();
-        public InformationPurchaseResult receiptInfo { get; set; }
+        public InformationPurchaseResult ReceiptInfo { get; set; }
         public bool IsInitialized { get; set; }
 
         public static void Init()
@@ -88,7 +89,7 @@ namespace Pancake.Iap
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
         {
 #if !UNITY_EDITOR
-            receiptInfo = purchaseEvent.purchasedProduct.hasReceipt ? GetIapInformationPurchase(purchaseEvent.purchasedProduct.receipt) : null;
+            ReceiptInfo = purchaseEvent.purchasedProduct.hasReceipt ? GetIapInformationPurchase(purchaseEvent.purchasedProduct.receipt) : null;
 #endif
 
             PurchaseVerified(purchaseEvent);
