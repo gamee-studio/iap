@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using SimpleJSON;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -253,5 +254,12 @@ namespace Pancake.Iap
             }
         }
 #endif
+
+        public void ClearPurchaseRecord()
+        {
+            var purchasingDataPath = Path.Combine(Path.Combine(Application.persistentDataPath, "Unity"), "UnityPurchasing");
+            Directory.Delete(purchasingDataPath, true);
+
+        }
     }
 }
