@@ -11,8 +11,8 @@ namespace Pancake.Iap
     {
         public static event Action<string> OnPurchaseSucceedEvent;
         public static event Action<string> OnPurchaseFailedEvent;
-        private static readonly Dictionary<string, Action> CompletedDict = new();
-        private static readonly Dictionary<string, Action> FaildDict = new();
+        private static readonly Dictionary<string, Action> CompletedDict = new Dictionary<string, Action>();
+        private static readonly Dictionary<string, Action> FaildDict = new Dictionary<string, Action>();
 
         private static IAPManager instance;
         private IStoreController _controller;
@@ -224,5 +224,32 @@ namespace Pancake.Iap
 
             return ProductType.Consumable;
         }
+
+#if UNITY_IOS
+        public void RestorePurchase()
+        {
+            if (!IsInitialized)
+            {
+                Debug.Log("Restore purchases fail. not initialized!");
+                return;
+            }
+
+            if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXPlayer)
+            {
+                Debug.Log("Restore purchase started ...");
+
+                var storeProvider = _extensions.GetExtension<IAppleExtensions>();
+                storeProvider.RestoreTransactions(_ =>
+                {
+                    // no purchase are avaiable to restore
+                    Debug.Log("Restore purchase continuting: " + _ + ". If no further messages, no purchase available to restore.");
+                });
+            }
+            else
+            {
+                Debug.Log("Restore purchase fail. not supported on this platform. current = " + Application.platform);
+            }
+        }
+#endif
     }
 }
