@@ -1,15 +1,15 @@
 # What
 
-Integration module for implementing in app purchase for Unity 3d
+Integration module for implementing in-app-purchase for Unity 3d
 
 ## How To Install
 
 Add the lines below to `Packages/manifest.json`
 
-- for version 1.0.7
+- for version 1.0.8
 
 ```csharp
-"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.7",
+"com.gamee.iap": "https://github.com/gamee-studio/iap.git?path=Assets/_Root#1.0.8",
 "com.pancake.simplejson": "https://github.com/pancake-llc/SimpleJSON.git?path=Assets/_Root#1.0.2",
 "com.pancake.common": "https://github.com/pancake-llc/common.git?path=Assets/_Root#1.2.5",
 ```
@@ -54,9 +54,9 @@ error
 IAPManager.Instance.OnPurchaseSucceedEvent += YourHandlePurchaseSucceedEvent;
 IAPManager.Instance.OnPurchaseFailedEvent += YourHandlePurchaseFailedEvent;
 
-private void YourHandlePurchaseSucceedEvent(PurchaseEventArgs product)
+private void YourHandlePurchaseSucceedEvent(string productId)
 {
-    switch (product.purchasedProduct.definition.id)
+    switch (productId)
     {
         case "com.larnten.removeads":
             break;
@@ -64,7 +64,7 @@ private void YourHandlePurchaseSucceedEvent(PurchaseEventArgs product)
     }
 }
 
-private void YourHandlePurchaseFailedEvent(string obj)
+private void YourHandlePurchaseFailedEvent(string productId)
 {
     // TO_DO        
 }
