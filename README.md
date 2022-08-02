@@ -43,7 +43,7 @@ Add the lines below to `Packages/manifest.json`
     - Then you can call method inside ProductImpl class to make specific item purchase
 
 ```c#
-ProductImpl.PurchaseRemoveads(); // ex call purchase remove ads item
+Product.PurchaseRemoveads(); // ex call purchase remove ads item
 ```
 
 4 You need to attach your custom event callback (purchase success and purchase faild) manual by following way, IAPManager is initialized automatically so don't worry about null
